@@ -1,5 +1,5 @@
 import db from '../models/index'; //import database
-import CRUDService from '../services/CRUDService' //import service
+import CRUDService from '../services/serviceLoader.js'; //import service tự động
 
 //hàm getHomePage
 let getHomePage = async (req, res) => {

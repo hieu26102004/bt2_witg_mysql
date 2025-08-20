@@ -1,23 +1,49 @@
-<body>
-  <table style="width:100%">
-    <tr>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Address</th>
-      <th>Action</th>
-    </tr>
-    <% for(let i = 0; i < datalist.length; i++) { %>
-    <tr>
-      <td><%= datalist[i].email %></td>
-      <td><%= datalist[i].firstName %></td>
-      <td><%= datalist[i].lastName %></td>
-      <td><%= datalist[i].address %></td>
-      <td>
-        <a href="/edit-crud?id=<%= datalist[i].id %>">Edit</a> ||
-        <a href="/delete-crud?id=<%= datalist[i].id %>">Delete</a>
-      </td>
-    </tr>
-    <% } %>
-  </table>
-</body>
+// ...dòng này đã bị xóa...
+<div class="row justify-content-center">
+  <div class="col-lg-11">
+    <div class="card shadow-sm mt-4">
+      <div class="card-body">
+        <h2 class="mb-4 text-center">Danh sách User</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle">
+            <thead class="table-primary">
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Role ID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% datalist.forEach(function(user) { %>
+                <tr>
+                  <td><%= user.id || user._id %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.firstName %></td>
+                  <td><%= user.lastName %></td>
+                  <td><%= user.address %></td>
+                  <td><%= user.phoneNumber %></td>
+                  <td><%= user.gender ? 'Nam' : 'Nữ' %></td>
+                  <td><%= user.roleId %></td>
+                  <td>
+                    <a href="/edit-crud?id=<%= user.id || user._id %>" class="btn btn-warning btn-sm me-1">Edit</a>
+                    <a href="/delete-crud?id=<%= user.id || user._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Bạn chắc chắn muốn xóa?')">Delete</a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/crud" class="btn btn-success me-2">Thêm User mới</a>
+      <a href="/" class="btn btn-secondary">Trang chủ</a>
+    </div>
+  </div>
+</div>

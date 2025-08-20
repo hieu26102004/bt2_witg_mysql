@@ -1,8 +1,10 @@
-import express from "express"; // cú pháp khác tương đương: var express = require('express');
-// javascript theo ES6
+import express from "express";
+import expressLayouts from "express-ejs-layouts";
 let configViewEngine = (app) => {
-    app.use(express.static("./src/public")); // Thiết lập thư mục tĩnh chứa images, css,..
-    app.set("view engine", "ejs"); // thiết lập viewEngine
-    app.set("views", "./src/views"); // thư mục chứa views
+    app.use(express.static("./src/public"));
+    app.set("view engine", "ejs");
+    app.set("views", "./src/views");
+    app.use(expressLayouts);
+    app.set('layout', 'layout'); // sử dụng layout.ejs mặc định
 }
-module.exports = configViewEngine; // xuất hàm ra
+module.exports = configViewEngine;
